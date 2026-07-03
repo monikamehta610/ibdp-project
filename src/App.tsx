@@ -30,6 +30,7 @@ import ChatWindow from './components/ChatWindow';
 import ChatInput from './components/ChatInput';
 import CodeViewer from './components/CodeViewer';
 import DebugPanel from './components/DebugPanel';
+import EssDashboard from './components/EssDashboard';
 import ConversationSidebar from './components/ConversationSidebar';
 import GitHubLink from './components/GitHubLink';
 import DeployLink from './components/DeployLink';
@@ -132,7 +133,7 @@ function AppInner() {
   // when the SDK ACTUALLY loads a skill for this turn), auto-cleared
   // after a short interval so the pill animates out.
   const [skillInUse, setSkillInUse] = useState<string | null>(null);
-  const [rightPanelMode, setRightPanelMode] = useState<'code' | 'debug'>('code');
+  const [rightPanelMode, setRightPanelMode] = useState<'ess' | 'code' | 'debug'>('ess');
 
   // Conversation list state (left sidebar)
   const [conversations, setConversations] = useState<ConversationSummary[]>([]);
@@ -402,7 +403,7 @@ function AppInner() {
 
   const handleSend = useCallback(async (text: string) => {
     initDoneRef.current = true;
-    setRightPanelMode('debug');
+    setRightPanelMode(prev => prev === 'ess' ? 'ess' : 'debug');
 
     const userMsg: Message = {
       id: crypto.randomUUID(),
@@ -639,7 +640,7 @@ function AppInner() {
     setActiveConversationId(newId);
     setMessages([]);
     setDebugEvents([]);
-    setRightPanelMode('code');
+    setRightPanelMode('ess');
     initDoneRef.current = false;
   }, [refreshConversations]);
 
@@ -672,7 +673,7 @@ function AppInner() {
     localStorage.setItem(CONVERSATION_ID_STORAGE_KEY, id);
     conversationIdRef.current = id;
     setActiveConversationId(id);
-    setRightPanelMode('code');
+    setRightPanelMode('ess');
     void loadConversation(id);
   }, [loading, loadConversation]);
 
@@ -688,7 +689,7 @@ function AppInner() {
     setActiveConversationId(newId);
     setMessages([]);
     setDebugEvents([]);
-    setRightPanelMode('code');
+    setRightPanelMode('ess');
     initDoneRef.current = false;
     setHistoryLoading(false);
   }, [loading]);
@@ -789,11 +790,71 @@ function AppInner() {
         </div>
 
         <div className={styles.codePanel}>
-          {rightPanelMode === 'code' ? (
-            <CodeViewer />
-          ) : (
-            <DebugPanel events={debugEvents} onClear={() => setDebugEvents([])} />
-          )}
+          <div style={{ display: 'flex', background: 'rgba(0,0,0,0.3)', borderBottom: '1px solid var(--bg-border)', flexShrink: 0 }}>
+            <button
+              onClick={() => setRightPanelMode('ess')}
+              style={{
+                flex: 1,
+                padding: '12px 6px',
+                fontFamily: 'var(--font-mono)',
+                fontSize: '0.65rem',
+                border: 'none',
+                background: rightPanelMode === 'ess' ? 'var(--bg-elevated)' : 'transparent',
+                color: rightPanelMode === 'ess' ? 'var(--accent-gold)' : 'var(--text-secondary)',
+                cursor: 'pointer',
+                fontWeight: rightPanelMode === 'ess' ? 'bold' : 'normal',
+                borderBottom: rightPanelMode === 'ess' ? '2px solid var(--accent-gold)' : 'none',
+                outline: 'none'
+              }}
+            >
+              🌿 ESS Study
+            </button>
+            <button
+              onClick={() => setRightPanelMode('code')}
+              style={{
+                flex: 1,
+                padding: '12px 6px',
+                fontFamily: 'var(--font-mono)',
+                fontSize: '0.65rem',
+                border: 'none',
+                background: rightPanelMode === 'code' ? 'var(--bg-elevated)' : 'transparent',
+                color: rightPanelMode === 'code' ? 'var(--accent-gold)' : 'var(--text-secondary)',
+                cursor: 'pointer',
+                fontWeight: rightPanelMode === 'code' ? 'bold' : 'normal',
+                borderBottom: rightPanelMode === 'code' ? '2px solid var(--accent-gold)' : 'none',
+                outline: 'none'
+              }}
+            >
+              ⌨️ Code
+            </button>
+            <button
+              onClick={() => setRightPanelMode('debug')}
+              style={{
+                flex: 1,
+                padding: '12px 6px',
+                fontFamily: 'var(--font-mono)',
+                fontSize: '0.65rem',
+                border: 'none',
+                background: rightPanelMode === 'debug' ? 'var(--bg-elevated)' : 'transparent',
+                color: rightPanelMode === 'debug' ? 'var(--accent-gold)' : 'var(--text-secondary)',
+                cursor: 'pointer',
+                fontWeight: rightPanelMode === 'debug' ? 'bold' : 'normal',
+                borderBottom: rightPanelMode === 'debug' ? '2px solid var(--accent-gold)' : 'none',
+                outline: 'none'
+              }}
+            >
+              🔎 Trace ({debugEvents.length})
+            </button>
+          </div>
+          <div style={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>
+            {rightPanelMode === 'ess' ? (
+              <EssDashboard onAskTutor={handleSend} />
+            ) : rightPanelMode === 'code' ? (
+              <CodeViewer />
+            ) : (
+              <DebugPanel events={debugEvents} onClear={() => setDebugEvents([])} />
+            )}
+          </div>
         </div>
       </div>
       <GitHubLink />

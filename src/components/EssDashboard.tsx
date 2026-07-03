@@ -193,7 +193,7 @@ export const PAPER_2_ESSAY: Paper2EssayPrompt = {
 };
 
 export default function EssDashboard({ onAskTutor }: EssDashboardProps) {
-  const [activeTab, setActiveTab] = useState<'evs' | 'practice' | 'systems' | 'sustainability' | 'guide'>('evs');
+  const [activeTab, setActiveTab] = useState<'evs' | 'practice' | 'systems' | 'sustainability' | 'guide' | 'ia_ee'>('evs');
 
   // --- EVS State ---
   const [quizAnswers, setQuizAnswers] = useState<Record<number, string>>({});
@@ -504,6 +504,12 @@ export default function EssDashboard({ onAskTutor }: EssDashboardProps) {
           onClick={() => setActiveTab('guide')}
         >
           📖 Guide
+        </button>
+        <button
+          className={`${styles.tabBtn} ${activeTab === 'ia_ee' ? styles.activeTabBtn : ''}`}
+          onClick={() => setActiveTab('ia_ee')}
+        >
+          🔬 IA & EE
         </button>
       </header>
 
@@ -1267,6 +1273,196 @@ export default function EssDashboard({ onAskTutor }: EssDashboardProps) {
                 <span className={styles.conceptPill}>EIA Audit</span>
                 <span className={styles.conceptPill}>Footprints (gha)</span>
                 <span className={styles.conceptPill}>Overshoot</span>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* --- IA & EE GUIDE TAB --- */}
+        {activeTab === 'ia_ee' && (
+          <div style={{ animation: 'fadeIn 0.3s ease' }} className={styles.guideList}>
+            {/* Intro Header */}
+            <div className={`${styles.guideCard} ${styles.mixedTopicCard}`} style={{ borderStyle: 'solid' }}>
+              <div className={styles.guideHeader}>
+                <h4 className={styles.guideTitle} style={{ color: 'var(--accent-gold)' }}>🔬 IB DP ESS Internal Assessment & Extended Essay Guide</h4>
+              </div>
+              <p className={styles.guideDesc}>
+                Environmental Systems and Societies is an interdisciplinary course. Research in ESS must combine rigorous scientific methodologies (data response/experiments) with an evaluative analysis of human value systems (EVS) and societal applications.
+              </p>
+            </div>
+
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '20px', marginTop: 10 }}>
+              {/* === INTERNAL ASSESSMENT (IA) HUB === */}
+              <div className={styles.guideCard} style={{ borderLeft: '3px solid var(--accent-gold)' }}>
+                <h3 className={styles.examTitle} style={{ fontSize: '1rem', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  🧪 Section 1: Internal Assessment (IA) Hub [30 Marks]
+                </h3>
+                <p className={styles.guideDesc} style={{ margin: '8px 0 16px 0' }}>
+                  The individual investigation is a written report of a scientific research project designed and completed by the student.
+                </p>
+
+                {/* IA Rubric Criteria */}
+                <div className={styles.essayGuidelinesBox}>
+                  <h5 className={styles.guidelinesTitle}>📋 Official IB ESS IA Assessment Criteria</h5>
+                  <ul className={styles.guidanceList}>
+                    <li className={styles.guidanceItem}>
+                      <strong>Context (6 Marks):</strong> Clear research question (RQ), environmental issue significance, EVS links, and background scientific theory.
+                    </li>
+                    <li className={styles.guidanceItem}>
+                      <strong>Planning (6 Marks):</strong> Fully justified variables, materials list, detailed safety/ethical/environmental considerations, and repeatable methodology.
+                    </li>
+                    <li className={styles.guidanceItem}>
+                      <strong>Results, Analysis & Conclusion (6 Marks):</strong> Raw data tables (with uncertainties), processed charts, statistical tests, and a direct scientific conclusion answering the RQ.
+                    </li>
+                    <li className={styles.guidanceItem}>
+                      <strong>Discussion & Evaluation (6 Marks):</strong> Evaluates experimental errors (random, systematic), limitations in resolution, and outlines concrete modifications.
+                    </li>
+                    <li className={styles.guidanceItem}>
+                      <strong>Applications (3 Marks):</strong> Evaluates one technological or ecological solution to the environmental issue, showing EVS linkages.
+                    </li>
+                    <li className={styles.guidanceItem}>
+                      <strong>Communication (3 Marks):</strong> Structured layout, appropriate notation, exact bibliography, page count limit.
+                    </li>
+                  </ul>
+                  <button
+                    className={styles.askTutorBtn}
+                    style={{ marginTop: 12, width: '100%' }}
+                    onClick={() => onAskTutor("I'm starting my IB ESS IA. Can you help me brainstorm a structure, align my plan with the 30-mark criteria, and explain how to score full marks in the Applications criteria?")}
+                  >
+                    🧠 Brainstorm IA Setup with Tutor
+                  </button>
+                </div>
+
+                {/* Annotated IA Ideas */}
+                <h4 className={styles.guideTitle} style={{ fontSize: '0.85rem', marginTop: 16 }}>💡 High-Scoring IA Investigation Ideas</h4>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', marginTop: 8 }}>
+                  
+                  <div style={{ background: 'rgba(18, 18, 36, 0.2)', border: '1px solid var(--bg-border)', borderRadius: 'var(--radius-sm)', padding: 12 }}>
+                    <h5 style={{ fontSize: '0.8rem', color: 'var(--accent-gold)' }}>1. Eutrophication and Algae Population Kinetics</h5>
+                    <p className={styles.guideDesc} style={{ fontSize: '0.75rem', margin: '4px 0 8px 0' }}>
+                      <strong>Setup:</strong> Measuring how varying phosphate/nitrate concentrations affect chlorophyll-a content and light attenuation in water samples.
+                    </p>
+                    <span className={styles.conceptPill}>Independent: Phosphate mg/L</span>
+                    <span className={styles.conceptPill}>Dependent: Chlorophyll-a %</span>
+                    <button
+                      className={styles.askTutorBtn}
+                      style={{ display: 'block', marginTop: 8, padding: '4px 8px', fontSize: '0.65rem' }}
+                      onClick={() => onAskTutor("I am interested in doing my ESS IA on 'Eutrophication and Algae Population Kinetics'. Can you help me write a detailed, repeatable experimental method and identify the controlled variables?")}
+                    >
+                      💬 Discuss Methodology with Tutor
+                    </button>
+                  </div>
+
+                  <div style={{ background: 'rgba(18, 18, 36, 0.2)', border: '1px solid var(--bg-border)', borderRadius: 'var(--radius-sm)', padding: 12 }}>
+                    <h5 style={{ fontSize: '0.8rem', color: 'var(--accent-gold)' }}>2. Soil Acidification & Buffering Capacities</h5>
+                    <p className={styles.guideDesc} style={{ fontSize: '0.75rem', margin: '4px 0 8px 0' }}>
+                      <strong>Setup:</strong> Simulating acid deposition to compare how clay, sandy, and loam soils resist pH changes, linked to ecosystem productivity.
+                    </p>
+                    <span className={styles.conceptPill}>Independent: Soil type</span>
+                    <span className={styles.conceptPill}>Dependent: pH fluctuation</span>
+                    <button
+                      className={styles.askTutorBtn}
+                      style={{ display: 'block', marginTop: 8, padding: '4px 8px', fontSize: '0.65rem' }}
+                      onClick={() => onAskTutor("I want to do my ESS IA on 'Soil Acidification & Buffering Capacities'. Can you help me outline the soil chemistry context, expected pH results, and buffering mechanism explanation?")}
+                    >
+                      💬 Discuss Methodology with Tutor
+                    </button>
+                  </div>
+
+                  <div style={{ background: 'rgba(18, 18, 36, 0.2)', border: '1px solid var(--bg-border)', borderRadius: 'var(--radius-sm)', padding: 12 }}>
+                    <h5 style={{ fontSize: '0.8rem', color: 'var(--accent-gold)' }}>3. Demographic EVS Alignment & Food Waste Habits</h5>
+                    <p className={styles.guideDesc} style={{ fontSize: '0.75rem', margin: '4px 0 8px 0' }}>
+                      <strong>Setup:</strong> Designing a Likert survey to evaluate how individual EVS scores (ecocentric/technocentric) correlate with weekly domestic food waste behavior.
+                    </p>
+                    <span className={styles.conceptPill}>Independent: Survey EVS category</span>
+                    <span className={styles.conceptPill}>Dependent: Waste behaviors index</span>
+                    <button
+                      className={styles.askTutorBtn}
+                      style={{ display: 'block', marginTop: 8, padding: '4px 8px', fontSize: '0.65rem' }}
+                      onClick={() => onAskTutor("I am planning a social science ESS IA using survey data to correlate EVS categories with household food waste habits. Can you help me format my Likert-scale questions and plan the statistical analysis (Chi-Square/Spearman Correlation)?")}
+                    >
+                      💬 Discuss Methodology with Tutor
+                    </button>
+                  </div>
+
+                </div>
+              </div>
+
+              {/* === EXTENDED ESSAY (EE) HUB === */}
+              <div className={styles.guideCard} style={{ borderLeft: '3px solid var(--accent-gold)' }}>
+                <h3 className={styles.examTitle} style={{ fontSize: '1rem', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  ✍️ Section 2: Extended Essay (EE) Hub [34 Marks]
+                </h3>
+                <p className={styles.guideDesc} style={{ margin: '8px 0 16px 0' }}>
+                  An Extended Essay in ESS is an interdisciplinary research paper. It requires both a rigorous scientific analysis (from Group 4) and an evaluation of societal perspectives, EVS values, and policies (from Group 3).
+                </p>
+
+                {/* EE Rubric Criteria */}
+                <div className={styles.essayGuidelinesBox} style={{ background: 'rgba(90, 74, 242, 0.03)', borderColor: 'rgba(90, 74, 242, 0.15)' }}>
+                  <h5 className={styles.guidelinesTitle} style={{ color: 'var(--accent-gold)' }}>📋 Extended Essay Assessment Criteria</h5>
+                  <ul className={styles.guidanceList}>
+                    <li className={styles.guidanceItem}>
+                      <strong>Criterion A: Focus & Method (6 Marks):</strong> Formulates a clear research question, establishes the environmental significance, and justifies the scientific/societal methodology.
+                    </li>
+                    <li className={styles.guidanceItem}>
+                      <strong>Criterion B: Knowledge & Understanding (6 Marks):</strong> Integrates core scientific concepts, theories, and EVS value perspectives throughout the essay.
+                    </li>
+                    <li className={styles.guidanceItem}>
+                      <strong>Criterion C: Critical Thinking (12 Marks):</strong> Evaluates data, builds a reasoned, balanced argument, and synthesizes environmental science with human values.
+                    </li>
+                    <li className={styles.guidanceItem}>
+                      <strong>Criterion D: Presentation (4 Marks):</strong> Structural format, title page, table of contents, bibliography, reference citations, page layout.
+                    </li>
+                    <li className={styles.guidanceItem}>
+                      <strong>Criterion E: Engagement (6 Marks):</strong> Three formal reflections showing intellectual initiative, problem-solving, and personal motivation.
+                    </li>
+                  </ul>
+                  <button
+                    className={styles.askTutorBtn}
+                    style={{ marginTop: 12, width: '100%' }}
+                    onClick={() => onAskTutor("I am writing an Extended Essay in ESS. Can you explain how the interdisciplinary double-lens requirement works, and how to structure my critical analysis to score a high mark?")}
+                  >
+                    🧠 Discuss ESS EE Requirements with Tutor
+                  </button>
+                </div>
+
+                {/* Exemplar RQs */}
+                <h4 className={styles.guideTitle} style={{ fontSize: '0.85rem', marginTop: 16 }}>💡 Exemplar ESS Research Questions (RQs)</h4>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', marginTop: 8 }}>
+                  
+                  <div style={{ background: 'rgba(18, 18, 36, 0.2)', border: '1px solid var(--bg-border)', borderRadius: 'var(--radius-sm)', padding: 12 }}>
+                    <h5 style={{ fontSize: '0.8rem', color: 'var(--accent-gold)' }}>RQ 1: Desalination vs. Conservation in the Salton Sea</h5>
+                    <p className={styles.guideDesc} style={{ fontSize: '0.75rem', margin: '4px 0 8px 0' }}>
+                      <em>"To what extent do technocentric solutions (such as solar-powered desalination) compare to ecocentric water conservation policies in restoring the ecological salinity limits of the Salton Sea?"</em>
+                    </p>
+                    <span className={styles.conceptPill}>Data: Secondary salinity indicators</span>
+                    <span className={styles.conceptPill}>EVS: Technocentrism vs Ecocentrism</span>
+                    <button
+                      className={styles.askTutorBtn}
+                      style={{ display: 'block', marginTop: 8, padding: '4px 8px', fontSize: '0.65rem' }}
+                      onClick={() => onAskTutor("Let's brainstorm a structure for the Extended Essay Research Question: 'To what extent do technocentric solutions compare to ecocentric water conservation policies in restoring the Salton Sea?' What secondary data sources and EVS comparisons should I use?")}
+                    >
+                      💬 Brainstorm EE Structure with Tutor
+                    </button>
+                  </div>
+
+                  <div style={{ background: 'rgba(18, 18, 36, 0.2)', border: '1px solid var(--bg-border)', borderRadius: 'var(--radius-sm)', padding: 12 }}>
+                    <h5 style={{ fontSize: '0.8rem', color: 'var(--accent-gold)' }}>RQ 2: Mechanical Carbon Capture vs. Urban Forest Sequestration</h5>
+                    <p className={styles.guideDesc} style={{ fontSize: '0.75rem', margin: '4px 0 8px 0' }}>
+                      <em>"An evaluation of carbon reduction efficiency: how does mechanical carbon capture and storage (CCS) compare to afforestation programs in mitigating municipal emissions in Oslo?"</em>
+                    </p>
+                    <span className={styles.conceptPill}>Data: Net carbon metrics</span>
+                    <span className={styles.conceptPill}>EVS: Technological vs Ecological mitigation</span>
+                    <button
+                      className={styles.askTutorBtn}
+                      style={{ display: 'block', marginTop: 8, padding: '4px 8px', fontSize: '0.65rem' }}
+                      onClick={() => onAskTutor("Let's review the Extended Essay RQ: 'How does mechanical carbon capture (CCS) compare to afforestation in Oslo?' Can you help me structure my arguments, select primary/secondary metrics, and evaluate Oslo's municipal policies?")}
+                    >
+                      💬 Brainstorm EE Structure with Tutor
+                    </button>
+                  </div>
+
+                </div>
               </div>
             </div>
           </div>

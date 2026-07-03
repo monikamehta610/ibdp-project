@@ -682,48 +682,62 @@ export default function EssDashboard({ onAskTutor }: EssDashboardProps) {
                     </div>
 
                     <div className={styles.questionsList}>
-                      {PAPER_1_CASE_STUDY.questions.map((q) => (
-                        <div key={q.id} className={styles.examQuestionBox}>
-                          <div className={styles.questionHeaderRow}>
-                            <h4 className={styles.examQuestionText}>{q.text}</h4>
-                            <span className={styles.examMarksLabel}>[{q.marks} marks]</span>
-                          </div>
-                          
-                          <textarea
-                            className={styles.examTextarea}
-                            value={answers[q.id] || ''}
-                            onChange={(e) => handleAnswerChange(q.id, e.target.value)}
-                            placeholder="Type your structured answer here (incorporate specific terms and flows from the case study)..."
-                            rows={4}
-                          />
-
-                          <div className={styles.examActionRow}>
-                            <button
-                              className={styles.resetBtn}
-                              style={{ margin: 0, padding: '6px 12px', fontSize: '0.65rem' }}
-                              onClick={() => toggleMarkscheme(q.id)}
-                            >
-                              {showMarkschemes[q.id] ? "Hide Markscheme 👁️" : "Show Markscheme 👁️"}
-                            </button>
-                            
-                            <button
-                              className={styles.askTutorBtn}
-                              style={{ padding: '6px 12px' }}
-                              onClick={() => submitToTutor('p1', q.id, q.text, q.markscheme, q.marks)}
-                              disabled={isGrading[q.id]}
-                            >
-                              {isGrading[q.id] ? "Submitting..." : "💬 Submit to AI Tutor for Grading"}
-                            </button>
-                          </div>
-
-                          {showMarkschemes[q.id] && (
-                            <div className={styles.markschemeBox} style={{ animation: 'fadeIn 0.2s ease' }}>
-                              <h5 className={styles.markschemeTitle}>IB DP ESS Markscheme Guidelines:</h5>
-                              <pre className={styles.markschemeContent}>{q.markscheme}</pre>
+                      {PAPER_1_CASE_STUDY.questions.map((q) => {
+                        const wordCount = (answers[q.id] || '').trim().split(/\s+/).filter(Boolean).length;
+                        return (
+                          <div key={q.id} className={styles.examQuestionBox}>
+                            <div className={styles.questionHeaderRow}>
+                              <h4 className={styles.examQuestionText}>{q.text}</h4>
+                              <span className={styles.examMarksLabel}>[{q.marks} marks]</span>
                             </div>
-                          )}
-                        </div>
-                      ))}
+                            
+                            <textarea
+                              className={styles.examTextarea}
+                              value={answers[q.id] || ''}
+                              onChange={(e) => handleAnswerChange(q.id, e.target.value)}
+                              placeholder="Type your structured answer here (incorporate specific terms and flows from the case study)..."
+                              rows={4}
+                            />
+
+                            <div className={styles.textareaFooter}>
+                              <span className={styles.charCount}>{(answers[q.id] || '').length} chars / {wordCount} words</span>
+                            </div>
+
+                            {isGrading[q.id] && (
+                              <div className={styles.gradingStatusBanner}>
+                                <span className={styles.pulseDot} />
+                                <span>AI Tutor evaluating scientific accuracy against markscheme...</span>
+                              </div>
+                            )}
+
+                            <div className={styles.examActionRow} style={{ marginTop: 6 }}>
+                              <button
+                                className={styles.resetBtn}
+                                style={{ margin: 0, padding: '6px 12px', fontSize: '0.65rem' }}
+                                onClick={() => toggleMarkscheme(q.id)}
+                              >
+                                {showMarkschemes[q.id] ? "Hide Markscheme 👁️" : "Show Markscheme 👁️"}
+                              </button>
+                              
+                              <button
+                                className={styles.askTutorBtn}
+                                style={{ padding: '6px 12px' }}
+                                onClick={() => submitToTutor('p1', q.id, q.text, q.markscheme, q.marks)}
+                                disabled={isGrading[q.id]}
+                              >
+                                {isGrading[q.id] ? "Submitting..." : "💬 Submit to AI Tutor for Grading"}
+                              </button>
+                            </div>
+
+                            {showMarkschemes[q.id] && (
+                              <div className={styles.markschemeBox} style={{ animation: 'fadeIn 0.2s ease' }}>
+                                <h5 className={styles.markschemeTitle}>IB DP ESS Markscheme Guidelines:</h5>
+                                <pre className={styles.markschemeContent}>{q.markscheme}</pre>
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
                 )}
@@ -740,122 +754,154 @@ export default function EssDashboard({ onAskTutor }: EssDashboardProps) {
                     </div>
 
                     <div className={styles.questionsList}>
-                      {PAPER_2_SECTION_A.questions.map((q) => (
-                        <div key={q.id} className={styles.examQuestionBox}>
-                          <div className={styles.questionHeaderRow}>
-                            <h4 className={styles.examQuestionText}>{q.text}</h4>
-                            <span className={styles.examMarksLabel}>[{q.marks} marks]</span>
-                          </div>
-                          
-                          <textarea
-                            className={styles.examTextarea}
-                            value={answers[q.id] || ''}
-                            onChange={(e) => handleAnswerChange(q.id, e.target.value)}
-                            placeholder="Type your scientific explanation here..."
-                            rows={4}
-                          />
-
-                          <div className={styles.examActionRow}>
-                            <button
-                              className={styles.resetBtn}
-                              style={{ margin: 0, padding: '6px 12px', fontSize: '0.65rem' }}
-                              onClick={() => toggleMarkscheme(q.id)}
-                            >
-                              {showMarkschemes[q.id] ? "Hide Markscheme 👁️" : "Show Markscheme 👁️"}
-                            </button>
-                            
-                            <button
-                              className={styles.askTutorBtn}
-                              style={{ padding: '6px 12px' }}
-                              onClick={() => submitToTutor('p2a', q.id, q.text, q.markscheme, q.marks)}
-                              disabled={isGrading[q.id]}
-                            >
-                              {isGrading[q.id] ? "Submitting..." : "💬 Submit to AI Tutor for Grading"}
-                            </button>
-                          </div>
-
-                          {showMarkschemes[q.id] && (
-                            <div className={styles.markschemeBox} style={{ animation: 'fadeIn 0.2s ease' }}>
-                              <h5 className={styles.markschemeTitle}>IB DP ESS Markscheme Guidelines:</h5>
-                              <pre className={styles.markschemeContent}>{q.markscheme}</pre>
+                      {PAPER_2_SECTION_A.questions.map((q) => {
+                        const wordCount = (answers[q.id] || '').trim().split(/\s+/).filter(Boolean).length;
+                        return (
+                          <div key={q.id} className={styles.examQuestionBox}>
+                            <div className={styles.questionHeaderRow}>
+                              <h4 className={styles.examQuestionText}>{q.text}</h4>
+                              <span className={styles.examMarksLabel}>[{q.marks} marks]</span>
                             </div>
-                          )}
-                        </div>
-                      ))}
+                            
+                            <textarea
+                              className={styles.examTextarea}
+                              value={answers[q.id] || ''}
+                              onChange={(e) => handleAnswerChange(q.id, e.target.value)}
+                              placeholder="Type your scientific explanation here..."
+                              rows={4}
+                            />
+
+                            <div className={styles.textareaFooter}>
+                              <span className={styles.charCount}>{(answers[q.id] || '').length} chars / {wordCount} words</span>
+                            </div>
+
+                            {isGrading[q.id] && (
+                              <div className={styles.gradingStatusBanner}>
+                                <span className={styles.pulseDot} />
+                                <span>AI Tutor evaluating scientific accuracy against markscheme...</span>
+                              </div>
+                            )}
+
+                            <div className={styles.examActionRow} style={{ marginTop: 6 }}>
+                              <button
+                                className={styles.resetBtn}
+                                style={{ margin: 0, padding: '6px 12px', fontSize: '0.65rem' }}
+                                onClick={() => toggleMarkscheme(q.id)}
+                              >
+                                {showMarkschemes[q.id] ? "Hide Markscheme 👁️" : "Show Markscheme 👁️"}
+                              </button>
+                              
+                              <button
+                                className={styles.askTutorBtn}
+                                style={{ padding: '6px 12px' }}
+                                onClick={() => submitToTutor('p2a', q.id, q.text, q.markscheme, q.marks)}
+                                disabled={isGrading[q.id]}
+                              >
+                                {isGrading[q.id] ? "Submitting..." : "💬 Submit to AI Tutor for Grading"}
+                              </button>
+                            </div>
+
+                            {showMarkschemes[q.id] && (
+                              <div className={styles.markschemeBox} style={{ animation: 'fadeIn 0.2s ease' }}>
+                                <h5 className={styles.markschemeTitle}>IB DP ESS Markscheme Guidelines:</h5>
+                                <pre className={styles.markschemeContent}>{q.markscheme}</pre>
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
                 )}
 
                 {/* --- PAPER 2 SECTION B (ESSAY) VIEW --- */}
-                {examMode === 'paper2b' && (
-                  <div className={styles.practiceQuizCard} style={{ animation: 'fadeIn 0.3s ease' }}>
-                    <div className={styles.essayPromptHeader}>
-                      <span className={styles.practiceQuestionTopic}>Paper 2 Section B [9 Marks]</span>
-                      <h3 className={styles.essayPromptText}>"{PAPER_2_ESSAY.prompt}"</h3>
-                    </div>
-
-                    <div className={styles.essayGuidelinesBox}>
-                      <h5 className={styles.guidelinesTitle}>📋 Essay Construction Guidance</h5>
-                      <ul className={styles.guidanceList}>
-                        {PAPER_2_ESSAY.guidance.map((g, idx) => (
-                          <li key={idx} className={styles.guidanceItem}>{g}</li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <div className={styles.examQuestionBox} style={{ border: 'none', padding: 0, background: 'transparent' }}>
-                      <textarea
-                        className={styles.examTextarea}
-                        style={{ fontFamily: 'inherit', fontSize: '0.85rem' }}
-                        value={answers[PAPER_2_ESSAY.id] || ''}
-                        onChange={(e) => handleAnswerChange(PAPER_2_ESSAY.id, e.target.value)}
-                        placeholder="Write your comprehensive evaluative essay here. Make sure to define your EVS terms in the introduction, provide balanced arguments with specific examples (e.g. CCS vs permaculture/lifestyle shift), and conclude with an evaluation..."
-                        rows={12}
-                      />
-
-                      <div className={styles.examActionRow} style={{ marginTop: 14 }}>
-                        <button
-                          className={styles.resetBtn}
-                          style={{ margin: 0, padding: '8px 14px', fontSize: '0.7rem' }}
-                          onClick={() => toggleMarkscheme(PAPER_2_ESSAY.id)}
-                        >
-                          {showMarkschemes[PAPER_2_ESSAY.id] ? "Hide IB Rubric 👁️" : "Show IB Rubric 👁️"}
-                        </button>
-                        
-                        <button
-                          className={styles.askTutorBtn}
-                          style={{ padding: '8px 14px', fontSize: '0.7rem' }}
-                          onClick={() => submitToTutor('p2b', PAPER_2_ESSAY.id, PAPER_2_ESSAY.prompt, "Grade against Criterion A, B, C rubrics", PAPER_2_ESSAY.marks)}
-                          disabled={isGrading[PAPER_2_ESSAY.id]}
-                        >
-                          {isGrading[PAPER_2_ESSAY.id] ? "Submitting..." : "💬 Submit Essay to AI Tutor for Grading"}
-                        </button>
+                {examMode === 'paper2b' && (() => {
+                  const wordCount = (answers[PAPER_2_ESSAY.id] || '').trim().split(/\s+/).filter(Boolean).length;
+                  return (
+                    <div className={styles.practiceQuizCard} style={{ animation: 'fadeIn 0.3s ease' }}>
+                      <div className={styles.essayPromptHeader}>
+                        <span className={styles.practiceQuestionTopic}>Paper 2 Section B [9 Marks]</span>
+                        <h3 className={styles.essayPromptText}>"{PAPER_2_ESSAY.prompt}"</h3>
                       </div>
 
-                      {showMarkschemes[PAPER_2_ESSAY.id] && (
-                        <div className={styles.markschemeBox} style={{ animation: 'fadeIn 0.2s ease' }}>
-                          <h5 className={styles.markschemeTitle} style={{ marginBottom: 10 }}>IB DP ESS 9-Mark Essay Rubric</h5>
-                          <table className={styles.rubricTable}>
-                            <thead>
-                              <tr>
-                                <th>Band</th>
-                                <th>Assessment Criteria Description</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {PAPER_2_ESSAY.rubric.map((r, idx) => (
-                                <tr key={idx}>
-                                  <td style={{ fontWeight: 'bold', color: 'var(--accent-gold)' }}>{r.criterion}</td>
-                                  <td>{r.description}</td>
-                                </tr>
-                              ))}
-                            </tbody>
-                          </table>
+                      <details className={styles.guidelinesDetails}>
+                        <summary className={styles.guidelinesSummary}>
+                          <span>📋 View Essay Construction Guidance</span>
+                        </summary>
+                        <div className={styles.essayGuidelinesBox} style={{ border: 'none', background: 'transparent', margin: 0, padding: 12 }}>
+                          <ul className={styles.guidanceList}>
+                            {PAPER_2_ESSAY.guidance.map((g, idx) => (
+                              <li key={idx} className={styles.guidanceItem}>{g}</li>
+                            ))}
+                          </ul>
                         </div>
-                      )}
+                      </details>
+
+                      <div className={styles.examQuestionBox} style={{ border: 'none', padding: 0, background: 'transparent', marginTop: 16 }}>
+                        <textarea
+                          className={styles.examTextarea}
+                          style={{ fontFamily: 'inherit', fontSize: '0.85rem' }}
+                          value={answers[PAPER_2_ESSAY.id] || ''}
+                          onChange={(e) => handleAnswerChange(PAPER_2_ESSAY.id, e.target.value)}
+                          placeholder="Write your comprehensive evaluative essay here. Make sure to define your EVS terms in the introduction, provide balanced arguments with specific examples (e.g. CCS vs permaculture/lifestyle shift), and conclude with an evaluation..."
+                          rows={12}
+                        />
+
+                        <div className={styles.textareaFooter}>
+                          <span className={styles.charCount}>{(answers[PAPER_2_ESSAY.id] || '').length} chars / {wordCount} words</span>
+                        </div>
+
+                        {isGrading[PAPER_2_ESSAY.id] && (
+                          <div className={styles.gradingStatusBanner}>
+                            <span className={styles.pulseDot} />
+                            <span>AI Tutor evaluating scientific accuracy against essay rubric...</span>
+                          </div>
+                        )}
+
+                        <div className={styles.examActionRow} style={{ marginTop: 14 }}>
+                          <button
+                            className={styles.resetBtn}
+                            style={{ margin: 0, padding: '8px 14px', fontSize: '0.7rem' }}
+                            onClick={() => toggleMarkscheme(PAPER_2_ESSAY.id)}
+                          >
+                            {showMarkschemes[PAPER_2_ESSAY.id] ? "Hide IB Rubric 👁️" : "Show IB Rubric 👁️"}
+                          </button>
+                          
+                          <button
+                            className={styles.askTutorBtn}
+                            style={{ padding: '8px 14px', fontSize: '0.7rem' }}
+                            onClick={() => submitToTutor('p2b', PAPER_2_ESSAY.id, PAPER_2_ESSAY.prompt, "Grade against Criterion A, B, C rubrics", PAPER_2_ESSAY.marks)}
+                            disabled={isGrading[PAPER_2_ESSAY.id]}
+                          >
+                            {isGrading[PAPER_2_ESSAY.id] ? "Submitting..." : "💬 Submit Essay to AI Tutor for Grading"}
+                          </button>
+                        </div>
+
+                        {showMarkschemes[PAPER_2_ESSAY.id] && (
+                          <div className={styles.markschemeBox} style={{ animation: 'fadeIn 0.2s ease', marginTop: 16 }}>
+                            <h5 className={styles.markschemeTitle} style={{ marginBottom: 10 }}>IB DP ESS 9-Mark Essay Rubric</h5>
+                            <table className={styles.rubricTable}>
+                              <thead>
+                                <tr>
+                                  <th>Band</th>
+                                  <th>Assessment Criteria Description</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {PAPER_2_ESSAY.rubric.map((r, idx) => (
+                                  <tr key={idx}>
+                                    <td style={{ fontWeight: 'bold', color: 'var(--accent-gold)' }}>{r.criterion}</td>
+                                    <td>{r.description}</td>
+                                  </tr>
+                                ))}
+                              </tbody>
+                            </table>
+                          </div>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                )}
+                  );
+                })()}
               </div>
             )}
           </div>

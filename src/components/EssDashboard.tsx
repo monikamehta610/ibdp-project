@@ -63,302 +63,134 @@ const EVS_QUESTIONS = [
   }
 ];
 
-export interface PracticeQuestion {
-  id: number;
-  topicId: string;
-  topicName: string;
-  question: string;
-  options: string[];
-  correctAnswer: number;
-  explanation: string;
+export interface IBQuestion {
+  id: string;
+  text: string;
+  marks: number;
+  markscheme: string;
 }
 
-export const PRACTICE_QUESTIONS: PracticeQuestion[] = [
-  // Topic 1.1: EVS & Perspectives
-  {
-    id: 1,
-    topicId: "1.1",
-    topicName: "Topic 1.1: EVS & Perspectives",
-    question: "Which historical event directly led to the establishment of the Minamata Convention on Mercury?",
-    options: [
-      "The publication of Silent Spring by Rachel Carson (1962)",
-      "Bioaccumulation of methylmercury in a Japanese coastal city's food chain (1950s)",
-      "The Bhopal chemical gas leak disaster in India (1984)",
-      "The Chernobyl nuclear power plant meltdown in Ukraine (1986)"
-    ],
-    correctAnswer: 1,
-    explanation: "The Minamata disaster in the 1950s was caused by the discharge of methylmercury in industrial wastewater, which bioaccumulated in marine life and poisoned local communities, leading to the global treaty on mercury."
-  },
-  {
-    id: 2,
-    topicId: "1.1",
-    topicName: "Topic 1.1: EVS & Perspectives",
-    question: "A person who believes that all living things have intrinsic moral value and that human development should be limited to ecological carrying capacities is best classified as:",
-    options: [
-      "Deep Ecologist",
-      "Soft Technologist",
-      "Cornucopian",
-      "Environmental Manager"
-    ],
-    correctAnswer: 0,
-    explanation: "Deep Ecologists (extreme ecocentrists) believe in the intrinsic value of nature, the necessity of de-growth/lifestyle limits, and that humans have no right to reduce this richness except for vital needs."
-  },
-  {
-    id: 3,
-    topicId: "1.1",
-    topicName: "Topic 1.1: EVS & Perspectives",
-    question: "How does a cornucopian perspective differ from an environmental manager perspective?",
-    options: [
-      "Cornucopians advocate for local self-reliance, while environmental managers advocate for global treaties.",
-      "Cornucopians believe infinite scientific progress can solve all resource limits, while environmental managers advocate using taxes and legislation to guide growth.",
-      "Cornucopians believe in the intrinsic rights of animals, while environmental managers prioritize economic growth.",
-      "Cornucopians seek immediate de-growth, while environmental managers seek to engineer global feedback loops."
-    ],
-    correctAnswer: 1,
-    explanation: "Cornucopians (extreme technocentrics) believe the Earth has infinite resources due to human technology and substitution, whereas environmental managers (anthropocentrics) emphasize that growth must be regulated through carbon taxes, legislation, and public policies."
-  },
-  {
-    id: 4,
-    topicId: "1.1",
-    topicName: "Topic 1.1: EVS & Perspectives",
-    question: "Which of the following books is credited with initiating the modern environmental movement by exposing the dangers of chemical pesticides like DDT?",
-    options: [
-      "The Limits to Growth (Club of Rome)",
-      "Gaia (James Lovelock)",
-      "Silent Spring (Rachel Carson)",
-      "Our Common Future (Brundtland Report)"
-    ],
-    correctAnswer: 2,
-    explanation: "Rachel Carson's 'Silent Spring' (1962) documented the bioaccumulation of DDT and other synthetic pesticides in the food chain, sparking widespread public awareness and the ban of DDT."
-  },
-  {
-    id: 5,
-    topicId: "1.1",
-    topicName: "Topic 1.1: EVS & Perspectives",
-    question: "Which combination represents a technocentric response to greenhouse gas emissions?",
-    options: [
-      "Implementing carbon taxation and public transportation subsidies.",
-      "Implementing carbon capture and storage (CCS) and researching stratospheric aerosol injection.",
-      "Encouraging community-scale permaculture and transitioning to low-energy voluntary simplicity.",
-      "Enforcing strict mandatory quotas on flight travels."
-    ],
-    correctAnswer: 1,
-    explanation: "Using technology to capture carbon or engineer the climate represents a technocentric worldview, seeking to solve the issue through technological solutions rather than changing lifestyle (ecocentrism) or law (anthropocentrism)."
-  },
-  // Topic 1.2: Systems & Models
-  {
-    id: 6,
-    topicId: "1.2",
-    topicName: "Topic 1.2: Systems & Models",
-    question: "A sealed, glass terrarium containing soil, plants, water, and air, placed on a sunny windowsill, represents what type of system?",
-    options: [
-      "An open system",
-      "A closed system",
-      "An isolated system",
-      "A static system"
-    ],
-    correctAnswer: 1,
-    explanation: "A closed system exchanges energy (solar radiation in, heat radiating out) but does not exchange matter with its surroundings, which matches a sealed glass terrarium."
-  },
-  {
-    id: 7,
-    topicId: "1.2",
-    topicName: "Topic 1.2: Systems & Models",
-    question: "In systems diagrams, what do boxes and arrows represent, respectively?",
-    options: [
-      "Boxes represent flows; arrows represent boundary limits.",
-      "Boxes represent inputs; arrows represent outputs.",
-      "Boxes represent storages; arrows represent flows (transfers or transformations).",
-      "Boxes represent feedback loops; arrows represent thermodynamic entropy."
-    ],
-    correctAnswer: 2,
-    explanation: "In systems thinking, boxes/rectangles symbolize storages (where matter/energy is held) and arrows represent the flows (transfers or transformations) moving matter or energy."
-  },
-  {
-    id: 8,
-    topicId: "1.2",
-    topicName: "Topic 1.2: Systems & Models",
-    question: "What is the difference between a transfer and a transformation in a system's flows?",
-    options: [
-      "Transfers exchange matter; transformations exchange only energy.",
-      "Transfers involve a change of state or chemical composition; transformations only change location.",
-      "Transfers only change location without changing chemical state; transformations involve a change of state, chemistry, or energy form.",
-      "Transfers represent negative feedback; transformations represent positive feedback."
-    ],
-    correctAnswer: 2,
-    explanation: "A transfer is a flow that changes location (e.g., wind blowing dust, river water flowing). A transformation is a flow that changes state or chemistry (e.g., evaporation of water, photosynthesis converting solar energy to chemical energy)."
-  },
-  {
-    id: 9,
-    topicId: "1.2",
-    topicName: "Topic 1.2: Systems & Models",
-    question: "Why are models in environmental science considered both essential and inherently limited?",
-    options: [
-      "They can predict future trends with 100% accuracy but are too expensive to build.",
-      "They simplify complex real-world variables for easier analysis, but this simplification means they lose detail and rely on assumptions.",
-      "They only work for closed systems and cannot model open ecosystems.",
-      "They are governed by subjective opinions rather than empirical mathematical equations."
-    ],
-    correctAnswer: 1,
-    explanation: "Models are simplified representations of reality. While they help us visualize, simulate, and predict complex systems, their main limitation is that they make assumptions and omit many micro-variables to remain computable."
-  },
-  {
-    id: 10,
-    topicId: "1.2",
-    topicName: "Topic 1.2: Systems & Models",
-    question: "An ecosystem that remains in a steady-state equilibrium despite fluctuations is exhibiting what system characteristic?",
-    options: [
-      "Positive feedback dominance",
-      "Thermodynamic instability",
-      "Resilience governed by negative feedback",
-      "High entropy collapse"
-    ],
-    correctAnswer: 2,
-    explanation: "Resilience is the capacity of a system to withstand disturbance and return to its stable equilibrium. This self-regulation is driven by negative feedback loops that counteract changes."
-  },
-  // Topic 1.3: Energy & Equilibria
-  {
-    id: 11,
-    topicId: "1.3",
-    topicName: "Topic 1.3: Energy & Equilibria",
-    question: "Which law of thermodynamics states that energy cannot be created or destroyed, only transformed from one form to another?",
-    options: [
-      "The First Law of Thermodynamics",
-      "The Second Law of Thermodynamics",
-      "The Third Law of Thermodynamics",
-      "The Law of Conservation of Matter"
-    ],
-    correctAnswer: 0,
-    explanation: "The First Law of Thermodynamics (Law of Conservation of Energy) states that the total energy in an isolated system remains constant; it can change forms (e.g., light to heat) but cannot be created or destroyed."
-  },
-  {
-    id: 12,
-    topicId: "1.3",
-    topicName: "Topic 1.3: Energy & Equilibria",
-    question: "What is the ecological consequence of the Second Law of Thermodynamics?",
-    options: [
-      "High trophic levels have more energy than primary producers.",
-      "Energy is lost as heat in food chains, resulting in only about 10% efficiency of energy transfer between trophic levels.",
-      "Matter accumulates at higher trophic levels (bioaccumulation).",
-      "Nutrients recycle continuously without any losses to space."
-    ],
-    correctAnswer: 1,
-    explanation: "The Second Law states that in any energy transfer, entropy increases, meaning energy is dispersed into lower-quality forms (heat). In ecosystems, this explains why only ~10% of energy is passed to the next trophic level, creating a pyramid of energy."
-  },
-  {
-    id: 13,
-    topicId: "1.3",
-    topicName: "Topic 1.3: Energy & Equilibria",
-    question: "How does a positive feedback loop affect a system's stability?",
-    options: [
-      "It stabilizes the system around a steady-state setpoint.",
-      "It decreases entropy and prevents any change.",
-      "It amplifies deviation from the starting state, potentially driving the system past a tipping point.",
-      "It ensures that inputs always equal outputs."
-    ],
-    correctAnswer: 2,
-    explanation: "Positive feedback loops amplify or reinforce change, driving the system further away from its original equilibrium. This can destabilize the system and push it past a critical threshold or tipping point."
-  },
-  {
-    id: 14,
-    topicId: "1.3",
-    topicName: "Topic 1.3: Energy & Equilibria",
-    question: "In systems science, what is a 'tipping point'?",
-    options: [
-      "The exact center of gravity in a ternary EVS plot.",
-      "The moment a predator-prey relationship achieves stable homeostasis.",
-      "A critical threshold where a small change pushes the system into a completely new stable state.",
-      "The point where energy inputs equal the rate of primary production."
-    ],
-    correctAnswer: 2,
-    explanation: "A tipping point is a threshold where even a small additional disturbance will trigger a runaway shift (driven by positive feedback) into a completely different stable equilibrium or state, which is often difficult or impossible to reverse."
-  },
-  {
-    id: 15,
-    topicId: "1.3",
-    topicName: "Topic 1.3: Energy & Equilibria",
-    question: "Which of the following is a classic example of a positive feedback loop in global climate systems?",
-    options: [
-      "Increased temperature -> more evaporation -> more low clouds -> more solar reflection -> cooling.",
-      "Higher atmospheric CO2 -> increased plant growth -> higher carbon absorption -> cooling.",
-      "Rising temperature -> melting permafrost -> release of methane gas -> enhanced greenhouse effect -> higher temperature.",
-      "Ocean acidification -> dissolution of shells -> buffering of marine pH -> stable pH."
-    ],
-    correctAnswer: 2,
-    explanation: "Rising temperatures melt permafrost, which releases trapped greenhouse gases (methane and CO2), which traps more heat, leading to even higher temperatures. This is a reinforcing loop."
-  },
-  // Topic 1.4: Sustainability
-  {
-    id: 16,
-    topicId: "1.4",
-    topicName: "Topic 1.4: Sustainability",
-    question: "What is the relation between natural capital and natural income?",
-    options: [
-      "Natural capital is the annual harvest; natural income is the total soil volume.",
-      "Natural capital is the standing stock of natural resources; natural income is the sustainable yield or interest generated by that capital.",
-      "Natural capital represents technocentric assets; natural income represents ecocentric values.",
-      "Natural capital is measured in carbon footprints; natural income is measured in GDP."
-    ],
-    correctAnswer: 1,
-    explanation: "Natural capital represents the resource stock (e.g., a lake or forest), while natural income is the flow of valuable services or yield (e.g., fish caught sustainably, wood harvested) that can be generated annually without depleting the capital."
-  },
-  {
-    id: 17,
-    topicId: "1.4",
-    topicName: "Topic 1.4: Sustainability",
-    question: "An Environmental Impact Assessment (EIA) is prepared before a major development project. What is its main purpose?",
-    options: [
-      "To guarantee that a project will cause zero environmental impact.",
-      "To establish a baseline study of the existing environment, assess potential environmental consequences, and suggest mitigation strategies.",
-      "To calculate the exact financial cost of ecological damage.",
-      "To legally enforce ecocentric values on private developers."
-    ],
-    correctAnswer: 1,
-    explanation: "An EIA is a decision-making tool. It establishes a baseline study of the current ecosystem, predicts the potential impacts of a proposed development, proposes options to mitigate or reduce harm, and outlines a monitoring plan."
-  },
-  {
-    id: 18,
-    topicId: "1.4",
-    topicName: "Topic 1.4: Sustainability",
-    question: "The term 'ecological footprint' is best defined as:",
-    options: [
-      "The physical weight of humans pressing down on agricultural soil.",
-      "The total land and water area required to sustainably provide all resources consumed and assimilate all waste produced by a population.",
-      "The percentage of a nation's energy derived from fossil fuels.",
-      "The total distance a consumer's food travels from farm to plate."
-    ],
-    correctAnswer: 1,
-    explanation: "Ecological footprint measures the biocapacity required (in global hectares) to sustain a person's or population's consumption habits and absorb their carbon waste."
-  },
-  {
-    id: 19,
-    topicId: "1.4",
-    topicName: "Topic 1.4: Sustainability",
-    question: "What does a country's 'overshoot day' indicate?",
-    options: [
-      "The day when the country's population exceeds its total housing capacity.",
-      "The day of the year when the nation's resource consumption exceeds the Earth's biological capacity to regenerate those resources in that year.",
-      "The day when industrial factories emit more carbon than the state carbon quota allows.",
-      "The date when a country imports more natural income than it exports."
-    ],
-    correctAnswer: 1,
-    explanation: "Overshoot Day marks the date when humanity's (or a specific nation's) demand for ecological resources and services in that year exceeds what Earth can regenerate in that entire year."
-  },
-  {
-    id: 20,
-    topicId: "1.4",
-    topicName: "Topic 1.4: Sustainability",
-    question: "Why is 'sustainable development' defined by the Brundtland Commission as meeting the needs of the present without compromising the ability of future generations to meet their own needs?",
-    options: [
-      "Because it prioritizes complete conservation and bans any resource harvesting.",
-      "Because it balances ecological, economic, and social needs to prevent long-term natural capital depletion.",
-      "Because it relies entirely on technocentric geoengineering solutions.",
-      "Because it seeks to maximize short-term capital returns for developing nations."
-    ],
-    correctAnswer: 1,
-    explanation: "The Brundtland definition emphasizes intergenerational equity and the integration of social, economic, and environmental pillars, aiming to manage resources so they are not degraded or depleted for the future."
-  }
-];
+export interface Paper1CaseStudy {
+  title: string;
+  context: string;
+  diagram: string;
+  questions: IBQuestion[];
+}
+
+export interface Paper2SectionA {
+  title: string;
+  context: string;
+  diagram: string;
+  questions: IBQuestion[];
+}
+
+export interface Paper2EssayPrompt {
+  id: string;
+  prompt: string;
+  marks: number;
+  guidance: string[];
+  rubric: { criterion: string; marks: string; description: string }[];
+}
+
+export const PAPER_1_CASE_STUDY: Paper1CaseStudy = {
+  title: "Paper 1 Case Study: The Salton Sea System Collapse",
+  context: "The Salton Sea is a shallow, saline endorheic rift lake located in the California desert. It was created in 1905 when the Colorado River breached an irrigation canal. Over the last century, agricultural runoff containing fertilizers (nitrogen, phosphorus), toxic metals (selenium), and salts drained into the basin. Lacking any natural outflow, water evaporates rapidly under the desert sun, concentrating minerals and pollutants. This has triggered toxic algal blooms, severe eutrophication, anoxia, and catastrophic wildlife die-offs. As water levels recede, the dry lakebed exposes toxic dust, triggering respiratory health crises in nearby agricultural communities.",
+  diagram: `
++-----------------------------------------------------------------------+
+|  Colorado River & agricultural runoff (Inflow of Water & Matter)      |
+|                                |                                      |
+|                                v                                      |
+|                     [ SALTON SEA WATER STORAGE ]                      |
+|                                |                                      |
+|                                +----(Evaporation: Pure Water Only)--> |
+|                                |                                      |
+|                                v                                      |
+|               (Storage of Concentrated Salts & Toxic Minerals)        |
++-----------------------------------------------------------------------+
+  `,
+  questions: [
+    {
+      id: "p1_a",
+      text: "a) Outline why the Salton Sea is classified as an open system rather than a closed or isolated system.",
+      marks: 2,
+      markscheme: "Award 1 mark for stating that it exchanges both matter and energy with its surroundings.\nAward 1 mark for providing examples from the case study (e.g., matter inflows: agricultural runoff water, fertilizers, salts; energy inflows/outflows: solar radiation, heat evaporation)."
+    },
+    {
+      id: "p1_b",
+      text: "b) Distinguish between one transfer and one transformation process occurring in the Salton Sea system.",
+      marks: 2,
+      markscheme: "Award 1 mark for identifying a transfer (movement of matter/energy without changing state, e.g., runoff water carrying salt into the lake, wind blowing dust off the dry lakebed).\nAward 1 mark for identifying a transformation (change of chemical/physical state or energy form, e.g., liquid water evaporating into water vapor, biological photosynthesis converting solar energy into chemical energy in algae)."
+    },
+    {
+      id: "p1_c",
+      text: "c) Discuss the ecological consequences of eutrophication in this endorheic lake system.",
+      marks: 3,
+      markscheme: "Award 1 mark for explaining that agricultural fertilizer runoff increases nutrient levels, causing rapid algal blooms.\nAward 1 mark for explaining that high algae density blocks light (killing submerged plants), and that bacterial decomposition of dead algae consumes dissolved oxygen.\nAward 1 mark for linking the resulting anoxic condition (lack of oxygen) to massive die-offs of fish and bird populations (ecosystem collapse)."
+    }
+  ]
+};
+
+export const PAPER_2_SECTION_A: Paper2SectionA = {
+  title: "Paper 2 Section A: Systems Feedback & Energy",
+  context: "Analyze the diagram below illustrating the Permafrost Feedback Loop and answer the questions that follow.",
+  diagram: `
+                   Global Temperature Rises
+                             |
+                             v
+                     Permafrost Melts
+                             |
+                             v
+          Methane & CO2 Released (Decomposition)
+                             |
+                             v
+                 Enhanced Greenhouse Effect
+                             |
+                             +----(Amplifies Temperature Rise)
+  `,
+  questions: [
+    {
+      id: "p2a_a",
+      text: "a) State, with a reason, whether the permafrost feedback loop illustrated above represents a positive or negative feedback mechanism.",
+      marks: 2,
+      markscheme: "Award 1 mark for stating it is a positive feedback loop.\nAward 1 mark for explaining that the loop amplifies or reinforces the initial change (temperature rise leads to more warming, driving the system further from its starting state)."
+    },
+    {
+      id: "p2a_b",
+      text: "b) Outline how the First and Second Laws of Thermodynamics apply to the flow of energy through global climate systems.",
+      marks: 3,
+      markscheme: "First Law (1 mark): Energy enters the system as solar radiation and is conserved, changing forms (e.g., absorbed as thermal energy or stored as chemical energy) without being created or destroyed.\nSecond Law (1 mark): Energy transfers are inefficient; as heat is radiated or decomposed, energy becomes dispersed and degraded, increasing the overall entropy of the system.\nTrophic application (1 mark): Energy is lost as respiratory heat at each step, explaining the downward trend in available energy."
+    }
+  ]
+};
+
+export const PAPER_2_ESSAY: Paper2EssayPrompt = {
+  id: "p2b_essay",
+  prompt: "Evaluate the claim that technocentric solutions are more effective than ecocentric solutions in addressing global climate change.",
+  marks: 9,
+  guidance: [
+    "Introduction: Define technocentrism and ecocentrism. State your thesis clearly.",
+    "Technocentric Arguments: Discuss 2 technology-driven solutions (e.g., geoengineering, carbon capture) with their advantages (rapid, scalable) and limitations (cost, moral hazard).",
+    "Ecocentric Arguments: Discuss 2 lifestyle/value-driven solutions (e.g., carbon rationing, community transition to renewable energy, voluntary simplicity) with advantages (addresses root cause, sustainable) and limitations (difficult to change human behavior globally).",
+    "Evaluation & Conclusion: Provide a balanced, evaluative judgment and outline a personal/reasoned perspective."
+  ],
+  rubric: [
+    {
+      criterion: "7-9 Marks",
+      marks: "7-9",
+      description: "Balanced, detailed evaluation with specific case studies/examples; clear identification of EVS concepts; structured and coherent argument."
+    },
+    {
+      criterion: "4-6 Marks",
+      marks: "4-6",
+      description: "Some evaluation but lacks balance or specific examples; EVS terms are mentioned but not fully integrated."
+    },
+    {
+      criterion: "1-3 Marks",
+      marks: "1-3",
+      description: "Descriptive response with minimal EVS reference; lacks structure and coherent evaluation."
+    }
+  ]
+};
 
 export default function EssDashboard({ onAskTutor }: EssDashboardProps) {
   const [activeTab, setActiveTab] = useState<'evs' | 'practice' | 'systems' | 'sustainability' | 'guide'>('evs');
@@ -368,65 +200,67 @@ export default function EssDashboard({ onAskTutor }: EssDashboardProps) {
   const [quizFinished, setQuizFinished] = useState(false);
   const [evsScores, setEvsScores] = useState({ eco: 33, anthro: 33, techno: 34 });
 
-  // --- Practice Quiz State ---
-  const [selectedTopic, setSelectedTopic] = useState<string | null>(null); // '1.1' | '1.2' | '1.3' | '1.4' | 'mixed' | null
-  const [practiceQuestions, setPracticeQuestions] = useState<PracticeQuestion[]>([]);
-  const [currentQuestionIdx, setCurrentQuestionIdx] = useState<number>(0);
-  const [selectedOptionIdx, setSelectedOptionIdx] = useState<number | null>(null);
-  const [quizSubmitted, setQuizSubmitted] = useState<boolean>(false);
-  const [correctAnswersCount, setCorrectAnswersCount] = useState<number>(0);
-  const [practiceQuizFinished, setPracticeQuizFinished] = useState<boolean>(false);
+  // --- Exam Practice State ---
+  const [examMode, setExamMode] = useState<'paper1' | 'paper2a' | 'paper2b' | null>(null);
+  const [answers, setAnswers] = useState<Record<string, string>>({}); // keyed by question ID
+  const [showMarkschemes, setShowMarkschemes] = useState<Record<string, boolean>>({}); // keyed by question ID
+  const [isGrading, setIsGrading] = useState<Record<string, boolean>>({}); // keyed by question ID
 
-  const startPracticeQuiz = (topicId: string) => {
-    setSelectedTopic(topicId);
-    let questionsPool: PracticeQuestion[] = [];
-    if (topicId === 'mixed') {
-      const shuffled = [...PRACTICE_QUESTIONS].sort(() => 0.5 - Math.random());
-      questionsPool = shuffled.slice(0, 10);
+  const handleAnswerChange = (qId: string, val: string) => {
+    setAnswers(prev => ({ ...prev, [qId]: val }));
+  };
+
+  const toggleMarkscheme = (qId: string) => {
+    setShowMarkschemes(prev => ({ ...prev, [qId]: !prev[qId] }));
+  };
+
+  const submitToTutor = (qType: 'p1' | 'p2a' | 'p2b', qId: string, questionText: string, markscheme: string, marks: number) => {
+    const studentAnswer = answers[qId] || '';
+    if (!studentAnswer.trim()) {
+      alert("Please write your answer before submitting to the AI Tutor.");
+      return;
+    }
+
+    setIsGrading(prev => ({ ...prev, [qId]: true }));
+
+    let promptText = "";
+    if (qType === 'p1') {
+      promptText = `[IB Exam Practice Arena - Paper 1 Question]\n` +
+        `Question: ${questionText}\n` +
+        `Marks Allocated: ${marks}\n\n` +
+        `My Answer:\n"${studentAnswer}"\n\n` +
+        `Official Markscheme Criteria:\n"${markscheme}"\n\n` +
+        `Please evaluate my response strictly against the IB DP ESS criteria. Provide:\n` +
+        `1. A suggested score out of ${marks} marks.\n` +
+        `2. A bulleted breakdown of which specific marking points were awarded or missed.\n` +
+        `3. Clear, constructive advice on how to improve the response for full marks.`;
+    } else if (qType === 'p2a') {
+      promptText = `[IB Exam Practice Arena - Paper 2 Section A Question]\n` +
+        `Question: ${questionText}\n` +
+        `Marks Allocated: ${marks}\n\n` +
+        `My Answer:\n"${studentAnswer}"\n\n` +
+        `Official Markscheme Criteria:\n"${markscheme}"\n\n` +
+        `Please grade my response against the IB DP ESS Paper 2 Section A expectations. Provide:\n` +
+        `1. A score out of ${marks} marks.\n` +
+        `2. Analysis of the explanation's scientific accuracy.\n` +
+        `3. Feedback on what needs to be added for a complete answer.`;
     } else {
-      questionsPool = PRACTICE_QUESTIONS.filter(q => q.topicId === topicId);
+      promptText = `[IB Exam Practice Arena - Paper 2 Section B 9-Mark Essay]\n` +
+        `Essay Prompt: ${questionText}\n` +
+        `Marks Allocated: ${marks}\n\n` +
+        `My Essay:\n"${studentAnswer}"\n\n` +
+        `Please grade my essay using the IB DP ESS 9-mark essay rubric (focusing on Criterion A: Structure, Criterion B: Environmental Concepts, Criterion C: Synthesis/Evaluation). Provide:\n` +
+        `1. An overall score out of 9 marks.\n` +
+        `2. Detailed feedback on each of the three criteria.\n` +
+        `3. Suggested revisions or missing key examples (e.g. technocentric/ecocentric details) to achieve full marks.`;
     }
-    setPracticeQuestions(questionsPool);
-    setCurrentQuestionIdx(0);
-    setSelectedOptionIdx(null);
-    setQuizSubmitted(false);
-    setCorrectAnswersCount(0);
-    setPracticeQuizFinished(false);
-  };
 
-  const handlePracticeAnswerSelect = (optionIdx: number) => {
-    if (quizSubmitted) return;
-    setSelectedOptionIdx(optionIdx);
-  };
+    onAskTutor(promptText);
 
-  const submitPracticeAnswer = () => {
-    if (selectedOptionIdx === null || quizSubmitted) return;
-    const currentQ = practiceQuestions[currentQuestionIdx];
-    const isCorrect = selectedOptionIdx === currentQ.correctAnswer;
-    if (isCorrect) {
-      setCorrectAnswersCount(prev => prev + 1);
-    }
-    setQuizSubmitted(true);
-  };
-
-  const nextPracticeQuestion = () => {
-    if (currentQuestionIdx + 1 < practiceQuestions.length) {
-      setCurrentQuestionIdx(prev => prev + 1);
-      setSelectedOptionIdx(null);
-      setQuizSubmitted(false);
-    } else {
-      setPracticeQuizFinished(true);
-    }
-  };
-
-  const resetPracticeQuiz = () => {
-    setSelectedTopic(null);
-    setPracticeQuestions([]);
-    setCurrentQuestionIdx(0);
-    setSelectedOptionIdx(null);
-    setQuizSubmitted(false);
-    setCorrectAnswersCount(0);
-    setPracticeQuizFinished(false);
+    // Reset grading animation shortly
+    setTimeout(() => {
+      setIsGrading(prev => ({ ...prev, [qId]: false }));
+    }, 2000);
   };
 
   // Handle option click
@@ -651,7 +485,7 @@ export default function EssDashboard({ onAskTutor }: EssDashboardProps) {
           className={`${styles.tabBtn} ${activeTab === 'practice' ? styles.activeTabBtn : ''}`}
           onClick={() => setActiveTab('practice')}
         >
-          📝 Practice Quiz
+          📝 Exam Practice
         </button>
         <button
           className={`${styles.tabBtn} ${activeTab === 'systems' ? styles.activeTabBtn : ''}`}
@@ -778,214 +612,244 @@ export default function EssDashboard({ onAskTutor }: EssDashboardProps) {
           </div>
         )}
 
-        {/* --- PRACTICE QUIZ TAB --- */}
+        {/* --- PRACTICE QUIZ (IB EXAM PRACTICE ARENA) TAB --- */}
         {activeTab === 'practice' && (
           <div style={{ animation: 'fadeIn 0.3s ease' }}>
-            {selectedTopic === null ? (
+            {examMode === null ? (
               <div>
-                <h3 className={styles.sectionTitle}>📝 Topic 1 Practice Quizzes</h3>
+                <h3 className={styles.sectionTitle}>📝 IB DP ESS Exam Practice Arena</h3>
                 <p className={styles.sectionSubtitle}>
-                  Select a topic to test your knowledge with focused 5-question quizzes, or challenge yourself with a 10-question randomized mock exam.
+                  Select an exam format to practice structured response and essay writing. Submit your written answers directly to the AI Tutor for grading based on the official IB DP ESS markschemes.
                 </p>
                 
                 <div className={styles.topicSelectionGrid}>
-                  <div className={styles.topicCard} onClick={() => startPracticeQuiz('1.1')}>
-                    <div className={styles.topicCardIcon}>☯️</div>
+                  <div className={styles.topicCard} onClick={() => setExamMode('paper1')}>
+                    <div className={styles.topicCardIcon}>📄</div>
                     <div className={styles.topicCardBody}>
-                      <h4 className={styles.topicCardTitle}>Topic 1.1: EVS & Perspectives</h4>
-                      <p className={styles.topicCardDesc}>Environmental Value Systems, historical influences (Silent Spring, Minamata), and ecocentric/anthropocentric/technocentric worldviews.</p>
-                      <span className={styles.topicCardCount}>5 Questions</span>
+                      <h4 className={styles.topicCardTitle}>Paper 1: Case Study Data Response</h4>
+                      <p className={styles.topicCardDesc}>Analyze the Salton Sea ecological collapse. Answer structured questions focusing on system classification, flows, and eutrophication.</p>
+                      <span className={styles.topicCardCount}>Paper 1 (Case Study)</span>
                     </div>
                   </div>
 
-                  <div className={styles.topicCard} onClick={() => startPracticeQuiz('1.2')}>
+                  <div className={styles.topicCard} onClick={() => setExamMode('paper2a')}>
                     <div className={styles.topicCardIcon}>🔄</div>
                     <div className={styles.topicCardBody}>
-                      <h4 className={styles.topicCardTitle}>Topic 1.2: Systems & Models</h4>
-                      <p className={styles.topicCardDesc}>Open, closed, and isolated systems, storages and flows, transfers and transformations, and limits of models.</p>
-                      <span className={styles.topicCardCount}>5 Questions</span>
+                      <h4 className={styles.topicCardTitle}>Paper 2 Section A: Systems & Feedbacks</h4>
+                      <p className={styles.topicCardDesc}>Study the permafrost-methane positive feedback loop. Practice thermodynamics and feedback loop exam questions.</p>
+                      <span className={styles.topicCardCount}>Paper 2 Section A</span>
                     </div>
                   </div>
 
-                  <div className={styles.topicCard} onClick={() => startPracticeQuiz('1.3')}>
-                    <div className={styles.topicCardIcon}>🌡️</div>
+                  <div className={`${styles.topicCard} ${styles.mixedTopicCard}`} onClick={() => setExamMode('paper2b')}>
+                    <div className={styles.topicCardIcon}>✍️</div>
                     <div className={styles.topicCardBody}>
-                      <h4 className={styles.topicCardTitle}>Topic 1.3: Energy & Equilibria</h4>
-                      <p className={styles.topicCardDesc}>Laws of Thermodynamics in ecosystems, positive and negative feedback loops, homeostasis, resilience, and tipping points.</p>
-                      <span className={styles.topicCardCount}>5 Questions</span>
-                    </div>
-                  </div>
-
-                  <div className={styles.topicCard} onClick={() => startPracticeQuiz('1.4')}>
-                    <div className={styles.topicCardIcon}>🌍</div>
-                    <div className={styles.topicCardBody}>
-                      <h4 className={styles.topicCardTitle}>Topic 1.4: Sustainability & Capital</h4>
-                      <p className={styles.topicCardDesc}>Natural capital and natural income, ecological footprint, overshoot day, Environmental Impact Assessments (EIAs), and sustainable yields.</p>
-                      <span className={styles.topicCardCount}>5 Questions</span>
-                    </div>
-                  </div>
-
-                  <div className={`${styles.topicCard} ${styles.mixedTopicCard}`} onClick={() => startPracticeQuiz('mixed')}>
-                    <div className={styles.topicCardIcon}>🎓</div>
-                    <div className={styles.topicCardBody}>
-                      <h4 className={styles.topicCardTitle}>Mixed Topic 1 Mock Exam</h4>
-                      <p className={styles.topicCardDesc}>A randomized, comprehensive evaluation featuring 10 questions drawn from all Topic 1 Foundation subtopics.</p>
-                      <span className={styles.topicCardCount}>10 Questions</span>
+                      <h4 className={styles.topicCardTitle}>Paper 2 Section B: 9-Mark Evaluative Essay</h4>
+                      <p className={styles.topicCardDesc}>Write a full-length 9-mark essay evaluating ecocentric vs. technocentric climate change solutions, with grading rubrics.</p>
+                      <span className={styles.topicCardCount}>Paper 2 Section B (Essay)</span>
                     </div>
                   </div>
                 </div>
               </div>
-            ) : !practiceQuizFinished ? (
+            ) : (
               <div className={styles.quizSessionContainer}>
                 <div className={styles.quizSessionHeader}>
-                  <button className={styles.backBtn} onClick={resetPracticeQuiz}>
-                    ⬅️ Exit Quiz
+                  <button className={styles.backBtn} onClick={() => setExamMode(null)}>
+                    ⬅️ Back to Exam Arena
                   </button>
-                  <span className={styles.quizProgress}>
-                    Question {currentQuestionIdx + 1} of {practiceQuestions.length}
+                  <span className={styles.quizProgress} style={{ color: 'var(--accent-gold)', fontWeight: 'bold' }}>
+                    {examMode === 'paper1' && "Paper 1: Case Study Response"}
+                    {examMode === 'paper2a' && "Paper 2 Section A: Structured"}
+                    {examMode === 'paper2b' && "Paper 2 Section B: 9-Mark Essay"}
                   </span>
                 </div>
 
-                {practiceQuestions[currentQuestionIdx] && (() => {
-                  const q = practiceQuestions[currentQuestionIdx];
-                  return (
-                    <div className={styles.practiceQuizCard}>
-                      <span className={styles.practiceQuestionTopic}>{q.topicName}</span>
-                      <h4 className={styles.practiceQuestionText}>{q.question}</h4>
-                      
-                      <div className={styles.practiceOptionsList}>
-                        {q.options.map((opt, idx) => {
-                          let btnClass = styles.practiceOptionBtn;
-                          if (selectedOptionIdx === idx) {
-                            btnClass += ` ${styles.practiceSelectedOption}`;
-                          }
-                          if (quizSubmitted) {
-                            if (idx === q.correctAnswer) {
-                              btnClass += ` ${styles.practiceCorrectOption}`;
-                            } else if (selectedOptionIdx === idx) {
-                              btnClass += ` ${styles.practiceIncorrectOption}`;
-                            } else {
-                              btnClass += ` ${styles.practiceDisabledOption}`;
-                            }
-                          }
-                          return (
-                            <button
-                              key={idx}
-                              className={btnClass}
-                              disabled={quizSubmitted}
-                              onClick={() => handlePracticeAnswerSelect(idx)}
-                            >
-                              <span className={styles.optionLetter}>
-                                {String.fromCharCode(65 + idx)}
-                              </span>
-                              <span className={styles.optionTextContent}>{opt}</span>
-                            </button>
-                          );
-                        })}
-                      </div>
+                {/* --- PAPER 1 VIEW --- */}
+                {examMode === 'paper1' && (
+                  <div className={styles.practiceQuizCard} style={{ animation: 'fadeIn 0.3s ease' }}>
+                    <h3 className={styles.examTitle}>{PAPER_1_CASE_STUDY.title}</h3>
+                    <p className={styles.examIntro}>{PAPER_1_CASE_STUDY.context}</p>
+                    
+                    <div className={styles.diagramBox}>
+                      <span className={styles.diagramLabel}>System Diagram:</span>
+                      <pre className={styles.diagramPre}>{PAPER_1_CASE_STUDY.diagram}</pre>
+                    </div>
 
-                      {quizSubmitted && (
-                        <div className={styles.explanationBox} style={{ animation: 'fadeIn 0.3s ease' }}>
-                          <h5 className={styles.explanationTitle} style={{ color: selectedOptionIdx === q.correctAnswer ? '#10b981' : '#ef4444' }}>
-                            {selectedOptionIdx === q.correctAnswer ? "✅ Correct!" : "❌ Incorrect"}
-                          </h5>
-                          <p className={styles.explanationText}>{q.explanation}</p>
+                    <div className={styles.questionsList}>
+                      {PAPER_1_CASE_STUDY.questions.map((q) => (
+                        <div key={q.id} className={styles.examQuestionBox}>
+                          <div className={styles.questionHeaderRow}>
+                            <h4 className={styles.examQuestionText}>{q.text}</h4>
+                            <span className={styles.examMarksLabel}>[{q.marks} marks]</span>
+                          </div>
                           
-                          <div className={styles.explanationActions}>
+                          <textarea
+                            className={styles.examTextarea}
+                            value={answers[q.id] || ''}
+                            onChange={(e) => handleAnswerChange(q.id, e.target.value)}
+                            placeholder="Type your structured answer here (incorporate specific terms and flows from the case study)..."
+                            rows={4}
+                          />
+
+                          <div className={styles.examActionRow}>
+                            <button
+                              className={styles.resetBtn}
+                              style={{ margin: 0, padding: '6px 12px', fontSize: '0.65rem' }}
+                              onClick={() => toggleMarkscheme(q.id)}
+                            >
+                              {showMarkschemes[q.id] ? "Hide Markscheme 👁️" : "Show Markscheme 👁️"}
+                            </button>
+                            
                             <button
                               className={styles.askTutorBtn}
-                              onClick={() => onAskTutor(`Let's discuss this IBDP ESS question on "${q.topicName}":\n\n"${q.question}"\n\nOptions:\n- A: ${q.options[0]}\n- B: ${q.options[1]}\n- C: ${q.options[2]}\n- D: ${q.options[3]}\n\nCorrect Answer: ${q.options[q.correctAnswer]}\n\nYour explanation states: "${q.explanation}". Can you expand on the core concepts here?`)}
+                              style={{ padding: '6px 12px' }}
+                              onClick={() => submitToTutor('p1', q.id, q.text, q.markscheme, q.marks)}
+                              disabled={isGrading[q.id]}
                             >
-                              💬 Discuss Question with AI Tutor
+                              {isGrading[q.id] ? "Submitting..." : "💬 Submit to AI Tutor for Grading"}
                             </button>
                           </div>
+
+                          {showMarkschemes[q.id] && (
+                            <div className={styles.markschemeBox} style={{ animation: 'fadeIn 0.2s ease' }}>
+                              <h5 className={styles.markschemeTitle}>IB DP ESS Markscheme Guidelines:</h5>
+                              <pre className={styles.markschemeContent}>{q.markscheme}</pre>
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* --- PAPER 2 SECTION A VIEW --- */}
+                {examMode === 'paper2a' && (
+                  <div className={styles.practiceQuizCard} style={{ animation: 'fadeIn 0.3s ease' }}>
+                    <h3 className={styles.examTitle}>{PAPER_2_SECTION_A.title}</h3>
+                    <p className={styles.examIntro}>{PAPER_2_SECTION_A.context}</p>
+                    
+                    <div className={styles.diagramBox}>
+                      <span className={styles.diagramLabel}>Feedback Cycle:</span>
+                      <pre className={styles.diagramPre}>{PAPER_2_SECTION_A.diagram}</pre>
+                    </div>
+
+                    <div className={styles.questionsList}>
+                      {PAPER_2_SECTION_A.questions.map((q) => (
+                        <div key={q.id} className={styles.examQuestionBox}>
+                          <div className={styles.questionHeaderRow}>
+                            <h4 className={styles.examQuestionText}>{q.text}</h4>
+                            <span className={styles.examMarksLabel}>[{q.marks} marks]</span>
+                          </div>
+                          
+                          <textarea
+                            className={styles.examTextarea}
+                            value={answers[q.id] || ''}
+                            onChange={(e) => handleAnswerChange(q.id, e.target.value)}
+                            placeholder="Type your scientific explanation here..."
+                            rows={4}
+                          />
+
+                          <div className={styles.examActionRow}>
+                            <button
+                              className={styles.resetBtn}
+                              style={{ margin: 0, padding: '6px 12px', fontSize: '0.65rem' }}
+                              onClick={() => toggleMarkscheme(q.id)}
+                            >
+                              {showMarkschemes[q.id] ? "Hide Markscheme 👁️" : "Show Markscheme 👁️"}
+                            </button>
+                            
+                            <button
+                              className={styles.askTutorBtn}
+                              style={{ padding: '6px 12px' }}
+                              onClick={() => submitToTutor('p2a', q.id, q.text, q.markscheme, q.marks)}
+                              disabled={isGrading[q.id]}
+                            >
+                              {isGrading[q.id] ? "Submitting..." : "💬 Submit to AI Tutor for Grading"}
+                            </button>
+                          </div>
+
+                          {showMarkschemes[q.id] && (
+                            <div className={styles.markschemeBox} style={{ animation: 'fadeIn 0.2s ease' }}>
+                              <h5 className={styles.markschemeTitle}>IB DP ESS Markscheme Guidelines:</h5>
+                              <pre className={styles.markschemeContent}>{q.markscheme}</pre>
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* --- PAPER 2 SECTION B (ESSAY) VIEW --- */}
+                {examMode === 'paper2b' && (
+                  <div className={styles.practiceQuizCard} style={{ animation: 'fadeIn 0.3s ease' }}>
+                    <div className={styles.essayPromptHeader}>
+                      <span className={styles.practiceQuestionTopic}>Paper 2 Section B [9 Marks]</span>
+                      <h3 className={styles.essayPromptText}>"{PAPER_2_ESSAY.prompt}"</h3>
+                    </div>
+
+                    <div className={styles.essayGuidelinesBox}>
+                      <h5 className={styles.guidelinesTitle}>📋 Essay Construction Guidance</h5>
+                      <ul className={styles.guidanceList}>
+                        {PAPER_2_ESSAY.guidance.map((g, idx) => (
+                          <li key={idx} className={styles.guidanceItem}>{g}</li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div className={styles.examQuestionBox} style={{ border: 'none', padding: 0, background: 'transparent' }}>
+                      <textarea
+                        className={styles.examTextarea}
+                        style={{ fontFamily: 'inherit', fontSize: '0.85rem' }}
+                        value={answers[PAPER_2_ESSAY.id] || ''}
+                        onChange={(e) => handleAnswerChange(PAPER_2_ESSAY.id, e.target.value)}
+                        placeholder="Write your comprehensive evaluative essay here. Make sure to define your EVS terms in the introduction, provide balanced arguments with specific examples (e.g. CCS vs permaculture/lifestyle shift), and conclude with an evaluation..."
+                        rows={12}
+                      />
+
+                      <div className={styles.examActionRow} style={{ marginTop: 14 }}>
+                        <button
+                          className={styles.resetBtn}
+                          style={{ margin: 0, padding: '8px 14px', fontSize: '0.7rem' }}
+                          onClick={() => toggleMarkscheme(PAPER_2_ESSAY.id)}
+                        >
+                          {showMarkschemes[PAPER_2_ESSAY.id] ? "Hide IB Rubric 👁️" : "Show IB Rubric 👁️"}
+                        </button>
+                        
+                        <button
+                          className={styles.askTutorBtn}
+                          style={{ padding: '8px 14px', fontSize: '0.7rem' }}
+                          onClick={() => submitToTutor('p2b', PAPER_2_ESSAY.id, PAPER_2_ESSAY.prompt, "Grade against Criterion A, B, C rubrics", PAPER_2_ESSAY.marks)}
+                          disabled={isGrading[PAPER_2_ESSAY.id]}
+                        >
+                          {isGrading[PAPER_2_ESSAY.id] ? "Submitting..." : "💬 Submit Essay to AI Tutor for Grading"}
+                        </button>
+                      </div>
+
+                      {showMarkschemes[PAPER_2_ESSAY.id] && (
+                        <div className={styles.markschemeBox} style={{ animation: 'fadeIn 0.2s ease' }}>
+                          <h5 className={styles.markschemeTitle} style={{ marginBottom: 10 }}>IB DP ESS 9-Mark Essay Rubric</h5>
+                          <table className={styles.rubricTable}>
+                            <thead>
+                              <tr>
+                                <th>Band</th>
+                                <th>Assessment Criteria Description</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {PAPER_2_ESSAY.rubric.map((r, idx) => (
+                                <tr key={idx}>
+                                  <td style={{ fontWeight: 'bold', color: 'var(--accent-gold)' }}>{r.criterion}</td>
+                                  <td>{r.description}</td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
                         </div>
                       )}
-
-                      <div className={styles.quizControlsRow}>
-                        {!quizSubmitted ? (
-                          <button
-                            className={styles.simActionBtn}
-                            disabled={selectedOptionIdx === null}
-                            onClick={submitPracticeAnswer}
-                            style={{ opacity: selectedOptionIdx === null ? 0.5 : 1, cursor: selectedOptionIdx === null ? 'not-allowed' : 'pointer' }}
-                          >
-                            Submit Answer
-                          </button>
-                        ) : (
-                          <button
-                            className={styles.simActionBtn}
-                            onClick={nextPracticeQuestion}
-                          >
-                            {currentQuestionIdx + 1 === practiceQuestions.length ? "Finish Quiz" : "Next Question ➡️"}
-                          </button>
-                        )}
-                      </div>
                     </div>
-                  );
-                })()}
-              </div>
-            ) : (
-              <div className={styles.resultsContainer} style={{ animation: 'fadeIn 0.3s ease' }}>
-                <h3 className={styles.sectionTitle}>🏆 Quiz Results</h3>
-                <p className={styles.sectionSubtitle}>
-                  Here is a summary of your performance on {selectedTopic === 'mixed' ? 'Mixed Topic 1 Mock Exam' : `Topic ${selectedTopic}`}.
-                </p>
-
-                <div className={styles.scoreCircle}>
-                  <span className={styles.scoreNum}>{correctAnswersCount} / {practiceQuestions.length}</span>
-                  <span className={styles.scorePercent}>{Math.round((correctAnswersCount / practiceQuestions.length) * 100)}%</span>
-                </div>
-
-                <div className={styles.resultFeedbackBox}>
-                  {(() => {
-                    const pct = Math.round((correctAnswersCount / practiceQuestions.length) * 100);
-                    if (pct >= 85) {
-                      return (
-                        <>
-                          <h4 className={styles.feedbackTitle} style={{ color: '#10b981' }}>🎓 Excellent Mastery!</h4>
-                          <p className={styles.feedbackText}>
-                            You have demonstrated excellent understanding of these Topic 1 foundations. Ask the AI Tutor to challenge you with Paper 2 short-answer questions!
-                          </p>
-                        </>
-                      );
-                    } else if (pct >= 60) {
-                      return (
-                        <>
-                          <h4 className={styles.feedbackTitle} style={{ color: '#f59e0b' }}>📚 Solid Progress</h4>
-                          <p className={styles.feedbackText}>
-                            You have a good grasp of the basic concepts, but there is room for improvement. Ask the AI Tutor to review the questions you got wrong.
-                          </p>
-                        </>
-                      );
-                    } else {
-                      return (
-                        <>
-                          <h4 className={styles.feedbackTitle} style={{ color: '#ef4444' }}>📖 Study Focus Required</h4>
-                          <p className={styles.feedbackText}>
-                            It looks like you need to spend more time studying this subtopic. Click below to start an interactive study session with the AI Tutor!
-                          </p>
-                        </>
-                      );
-                    }
-                  })()}
-                </div>
-
-                <div className={styles.resultActionsRow}>
-                  <button className={styles.resetBtn} onClick={resetPracticeQuiz} style={{ flex: 1, margin: 0, padding: '12px' }}>
-                    🔄 Try Another Quiz
-                  </button>
-                  <button
-                    className={styles.askTutorBtn}
-                    style={{ flex: 1, padding: '12px' }}
-                    onClick={() => {
-                      const topicText = selectedTopic === 'mixed' ? "Topic 1 Foundations" : `Topic ${selectedTopic}`;
-                      onAskTutor(`I just finished a practice quiz on ${topicText} and scored ${correctAnswersCount}/${practiceQuestions.length} (${Math.round((correctAnswersCount / practiceQuestions.length) * 100)}%). Let's start a focused review session on the questions I struggled with.`);
-                    }}
-                  >
-                    💬 Start Tutor Review
-                  </button>
-                </div>
+                  </div>
+                )}
               </div>
             )}
           </div>

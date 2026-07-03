@@ -217,7 +217,7 @@ export default function CodeViewer() {
       {/* -- Footer tag -- */}
       <div className={styles.footer}>
         <span className={styles.footerDot} />
-        <span>Claude Agent SDK · EdgeOne Store · MCP Tools</span>
+        <span>BIOME AI Engine · EdgeOne Store · MCP Tools</span>
       </div>
     </div>
   );

@@ -1,23 +1,21 @@
 const en = {
   // Header
-  "app.title": "Claude Agent Starter",
-  "app.subtitle": "Running on EdgeOne Makers with sandbox tools, session memory & observability",
+  "app.title": "BIOME: IB ESS Exam Arena",
+  "app.subtitle": "IB DP Environmental Systems & Societies Study Companion & Exam Simulator",
 
   // Empty state
-  "empty.title": "Claude Agent Starter",
-  "empty.hint": "I'm a Claude assistant running on EdgeOne. I can call sandbox tools, persist session memory, and help you with debugging, file management, code execution, and web browsing.",
-  "empty.features": "Sandbox Tools · Store Memory · Observability",
+  "empty.title": "BIOME: IB ESS Exam Arena",
+  "empty.hint": "Welcome to your ultimate IB DP ESS Study Companion. I can analyze system boundaries, guide you through syllabus content, grade your exam answers against official markschemes, and coach you to a Level 7.",
+  "empty.features": "Interactive Simulations · Level 7 Markscheme Grading · Syllabus Guides",
 
   // Chat input
   "chat.placeholder": "Type a message...  ⏎ Send · Shift+⏎ Newline",
-  "chat.hint": "Powered by Claude Agent SDK + EdgeOne Makers · Demo only",
+  "chat.hint": "Coached by BIOME AI Tutor · Powered by EdgeOne Makers",
 
   // Preset questions
-  "preset.1": "Use terminal commands to check the current system time and OS version.",
-  "preset.2": "Create /tmp/fib.py, write Python code to calculate the first 10 Fibonacci numbers, execute it, and print the result.",
-  "preset.4": "Visit https://edgeone.ai and summarize the page content.",
-  "preset.screenshotEdgeOne": "Take a screenshot of edgeone.ai.",
-  "preset.skill.sandboxAlgorithms": "Calculate the first 20 Fibonacci numbers and provide the execution result.",
+  "preset.1": "Explain the difference between ecocentrism and technocentrism with examples.",
+  "preset.screenshotEdgeOne": "How do the Laws of Thermodynamics apply to energy flow in food webs?",
+  "preset.skill.sandboxAlgorithms": "Discuss how the Salton Sea system feedback loop caused its ecological collapse.",
 
   // Tool indicators
   "tool.commands": "Commands",

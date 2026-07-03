@@ -1095,19 +1095,67 @@ export default function EssDashboard({ onAskTutor }: EssDashboardProps) {
         {/* --- STUDY GUIDE TAB --- */}
         {activeTab === 'guide' && (
           <div style={{ animation: 'fadeIn 0.3s ease' }} className={styles.guideList}>
+            {/* Core Revision Mindmap */}
+            <div className={`${styles.guideCard} ${styles.mixedTopicCard}`} style={{ borderStyle: 'solid' }}>
+              <div className={styles.guideHeader}>
+                <h4 className={styles.guideTitle} style={{ color: 'var(--accent-gold)' }}>🧠 Topic 1: Foundations Revision Mindmap</h4>
+              </div>
+              <p className={styles.guideDesc}>
+                Use this comprehensive structural mindmap as a quick revision guide to connect the foundational elements of Environmental Systems and Societies.
+              </p>
+              <div className={styles.diagramBox} style={{ marginTop: 10 }}>
+                <pre className={styles.diagramPre}>{`
+                      +---------------------------------------+
+                      |   TOPIC 1: FOUNDATIONS OF ESS         |
+                      +-------------------+-------------------+
+                                          |
+     +--------------------+---------------+----------------+--------------------+
+     |                    |                                |                    |
++----+-----+         +----+-----+                     +----+-----+         +----+-----+
+| 1.1 EVS  |         |1.2 SYS   |                     |1.3 ENERGY|         |1.4 SUST. |
++----+-----+         +----+-----+                     +----+-----+         +----+-----+
+     |                    |                                |                    |
+     v- Paradigms:        v- Flows (matter/energy)         v- 1st Law: Energy   v- Capital:
+        Eco/Anthro/          & Storages (stock)               is conserved         Standing stock
+        Technocentric     v- Transfers: change loc.        v- 2nd Law: Heat     v- Income:
+     v- History:             (e.g., river flow)               loss & entropy       Sustainable
+        Silent Spring,    v- Transformations: state        v- Feedbacks:           interest/yield
+        Minamata, etc.       (e.g., evaporation)              - Negative: stable   v- EIA: Baseline
+     v- System:           v- Boundaries:                      - Positive: runaway  v- Footprints:
+        Inputs -> Filter     - Open (matter & energy)      v- Tipping Points &        Earth carrying
+        -> Outputs           - Closed (energy only)           resilience shifts       capacity (gha)
+                             - Isolated (neither)
+`}</pre>
+              </div>
+            </div>
+
+            {/* Topic 1.1 */}
             <div className={styles.guideCard}>
               <div className={styles.guideHeader}>
-                <h4 className={styles.guideTitle}>Topic 1.1: EVS & Perspectives</h4>
+                <h4 className={styles.guideTitle}>Topic 1.1: Environmental Value Systems</h4>
                 <button
                   className={styles.askTutorBtn}
-                  onClick={() => handleGuideAsk("Topic 1.1", "How did Minamata disease and Silent Spring prompt the rise of ecocentrism and modern environmental systems thinking?")}
+                  onClick={() => handleGuideAsk("Topic 1.1", "How do ecocentrism, anthropocentrism, and technocentrism differ, and how does the EVS model act as a system?")}
                 >
                   Ask Tutor
                 </button>
               </div>
               <p className={styles.guideDesc}>
-                Environmental Value Systems (EVS) dictate how we see the biosphere. Ecocentrists prioritize nature's intrinsic value, anthropocentrists value human stewardship/management, and technocentrics view technological engineering as the answer.
+                An EVS is a worldview that shapes how individuals or societies perceive and evaluate environmental issues. It behaves as a system with inputs, processing filters, and outputs.
               </p>
+              <div className={styles.diagramBox}>
+                <span className={styles.diagramLabel}>EVS System Flow Diagram:</span>
+                <pre className={styles.diagramPre}>{`
+[INPUTS: Education, Culture, Media, Religion, Science]
+                         |
+                         v
+              { EVS PROCESSING FILTER } 
+   (Appraisal, evaluation, and cognitive filtering)
+                         |
+                         v
+[OUTPUTS: Decisions, Actions, Beliefs, Environmental Policies]
+`}</pre>
+              </div>
               <div className={styles.conceptPills}>
                 <span className={styles.conceptPill}>Ecocentrism</span>
                 <span className={styles.conceptPill}>Anthropocentrism</span>
@@ -1117,47 +1165,108 @@ export default function EssDashboard({ onAskTutor }: EssDashboardProps) {
               </div>
             </div>
 
+            {/* Topic 1.2 */}
             <div className={styles.guideCard}>
               <div className={styles.guideHeader}>
                 <h4 className={styles.guideTitle}>Topic 1.2: Systems & Models</h4>
                 <button
                   className={styles.askTutorBtn}
-                  onClick={() => handleGuideAsk("Topic 1.2", "Explain the difference between transfers and transformations of matter/energy, and how positive feedback loops relate to tipping points and stable states.")}
+                  onClick={() => handleGuideAsk("Topic 1.2", "Explain the boundaries of open, closed, and isolated systems, and explain the difference between transfers and transformations.")}
                 >
                   Ask Tutor
                 </button>
               </div>
               <p className={styles.guideDesc}>
-                A system is defined by storages and flows (flows can be transfers of position or transformations of state). Open systems exchange both energy and matter; closed systems exchange energy only. Feedback loops govern system stability.
+                A system is defined by boundaries, storages (reservoirs of matter/energy), and flows. Open systems exchange both energy and matter; closed systems exchange energy only; isolated systems exchange neither.
               </p>
+              <div className={styles.diagramBox}>
+                <span className={styles.diagramLabel}>System Boundary Comparisons:</span>
+                <pre className={styles.diagramPre}>{`
+1. OPEN SYSTEM (e.g., Lake, Ecosystem, Human)
+   Input: Matter & Energy ---> [ SYSTEM STORAGE ] ---> Output: Matter & Energy
+
+2. CLOSED SYSTEM (e.g., Earth, Sealed Terrarium)
+   Input: Energy ONLY --------> [ SYSTEM STORAGE ] --------> Output: Energy ONLY
+
+3. ISOLATED SYSTEM (e.g., The Universe)
+   [ No Energy/Matter Inflow ] -> [ STORAGE ] -> [ No Energy/Matter Outflow ]
+`}</pre>
+              </div>
               <div className={styles.conceptPills}>
                 <span className={styles.conceptPill}>Open vs Closed</span>
                 <span className={styles.conceptPill}>Transfers</span>
                 <span className={styles.conceptPill}>Transformations</span>
-                <span className={styles.conceptPill}>Negative Feedback</span>
-                <span className={styles.conceptPill}>Resilience</span>
+                <span className={styles.conceptPill}>Models Limits</span>
+                <span className={styles.conceptPill}>Boundary Limits</span>
               </div>
             </div>
 
+            {/* Topic 1.3 */}
             <div className={styles.guideCard}>
               <div className={styles.guideHeader}>
-                <h4 className={styles.guideTitle}>Topic 1.3: Sustainability</h4>
+                <h4 className={styles.guideTitle}>Topic 1.3: Energy & Equilibria</h4>
                 <button
                   className={styles.askTutorBtn}
-                  onClick={() => handleGuideAsk("Topic 1.3", "How do we define natural capital and natural income? What role do Environmental Impact Assessments (EIAs) play in sustainable resource audits?")}
+                  onClick={() => handleGuideAsk("Topic 1.3", "Explain the First and Second Laws of Thermodynamics, and distinguish between positive and negative feedback loops.")}
                 >
                   Ask Tutor
                 </button>
               </div>
               <p className={styles.guideDesc}>
-                Sustainability means harvesting resources at a rate that allows natural replenishment. Natural capital is the resource stock (e.g. a forest), while natural income is the yield (e.g. annual timber growth). Overshoot is consuming more than the income.
+                Energy flows through systems governed by the laws of thermodynamics. Negative feedback loops stabilize systems around an equilibrium, while positive feedback loops amplify deviations and drive systems past tipping points.
               </p>
+              <div className={styles.diagramBox}>
+                <span className={styles.diagramLabel}>Feedback Loop Systems:</span>
+                <pre className={styles.diagramPre}>{`
+1. NEGATIVE FEEDBACK (Stabilizing / Homeostatic)
+   [Disturbance/Increase] --> (Negative Correction) --> [Return to Steady State]
+
+2. POSITIVE FEEDBACK (Amplifying / Destabilizing)
+   [Disturbance/Increase] --> (Amplification) --> [Runaway Shift] --> (Tipping Point)
+`}</pre>
+              </div>
+              <div className={styles.conceptPills}>
+                <span className={styles.conceptPill}>First Law</span>
+                <span className={styles.conceptPill}>Second Law</span>
+                <span className={styles.conceptPill}>Entropy</span>
+                <span className={styles.conceptPill}>Homeostasis</span>
+                <span className={styles.conceptPill}>Tipping Point</span>
+              </div>
+            </div>
+
+            {/* Topic 1.4 */}
+            <div className={styles.guideCard}>
+              <div className={styles.guideHeader}>
+                <h4 className={styles.guideTitle}>Topic 1.4: Sustainability</h4>
+                <button
+                  className={styles.askTutorBtn}
+                  onClick={() => handleGuideAsk("Topic 1.4", "How do we distinguish natural capital from natural income, and what indicators measure sustainability?")}
+                >
+                  Ask Tutor
+                </button>
+              </div>
+              <p className={styles.guideDesc}>
+                Sustainability means harvesting resources at a rate that allows natural replenishment. Natural capital is the resource stock (e.g. a forest), while natural income is the yield (e.g. annual timber growth).
+              </p>
+              <div className={styles.diagramBox}>
+                <span className={styles.diagramLabel}>Natural Capital Stock & Flow:</span>
+                <pre className={styles.diagramPre}>{`
+[ NATURAL CAPITAL STOCK (e.g., Lake water, Fish stock, Forest biomass) ]
+                                |
+                                v (Natural replenishment rate)
+[ NATURAL INCOME FLOW (e.g., Water inflow, annual reproduction, wood growth) ]
+                                |
+                                v (Harvest / Consumption)
+   * Sustainable: Harvest Rate <= Natural Income Replenishment Rate
+   * Unsustainable: Harvest Rate > Natural Income (depletes the Capital Stock)
+`}</pre>
+              </div>
               <div className={styles.conceptPills}>
                 <span className={styles.conceptPill}>Natural Capital</span>
                 <span className={styles.conceptPill}>Natural Income</span>
-                <span className={styles.conceptPill}>EIA</span>
+                <span className={styles.conceptPill}>EIA Audit</span>
+                <span className={styles.conceptPill}>Footprints (gha)</span>
                 <span className={styles.conceptPill}>Overshoot</span>
-                <span className={styles.conceptPill}>SDGs</span>
               </div>
             </div>
           </div>

@@ -790,7 +790,7 @@ function AppInner() {
         </div>
 
         <div className={styles.codePanel}>
-          <div style={{ display: 'flex', background: 'rgba(0,0,0,0.3)', borderBottom: '1px solid var(--bg-border)', flexShrink: 0 }}>
+          <div style={{ display: 'flex', background: 'rgba(18, 18, 36, 0.35)', borderBottom: '1px solid var(--bg-border)', flexShrink: 0 }}>
             <button
               onClick={() => setRightPanelMode('ess')}
               style={{
